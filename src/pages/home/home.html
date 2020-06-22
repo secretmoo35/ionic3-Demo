@@ -11,4 +11,23 @@
   <p>
     If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
   </p>
+
+  <p>Alert</p>
+  <button ion-button block (click)="alert()">Alert</button>
+
+  <p>Browser</p>
+  <button ion-button block (click)="openBrowser()">Open Browser</button>
+
+  <p>Loading</p>
+  <button ion-button block (click)="showLoading()">Show</button>
+
+  <p>Storage</p>
+  <p>Storage: {{ storage | json }}</p>
+  <p>Storage Encrypt: {{ storageEncrypt }}</p>
+  <button ion-button block (click)="setStorage()">Set storage</button>
+  <button ion-button block (click)="getStorage()">Get storage</button>
+  <button ion-button block (click)="getStorageNodecrypt()">Get storage encrypt</button>
+
+  <p>API</p>
+  <button ion-button block (click)="getUsers()">Get users</button>
 </ion-content>

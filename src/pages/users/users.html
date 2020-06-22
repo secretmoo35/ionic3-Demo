@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item *ngFor="let item of results | paginate: { itemsPerPage: currentLimit, currentPage: 1 };">
+    <ion-avatar item-left>
+      <img src="{{ item?.picture?.large }}">
+    </ion-avatar>
+    <h2>{{ item?.name?.title }}{{ item?.name?.first }} {{ item?.name?.last }}</h2>
+    <p>{{ item?.email }}</p>
+  </ion-item>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [threshold]="'300px'">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
