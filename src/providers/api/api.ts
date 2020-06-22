@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Network } from '@ionic-native/network';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class ApiProvider {
@@ -9,7 +11,9 @@ export class ApiProvider {
   isAuthorization = false;
 
   constructor(
-    public http: HttpClient
+    private http: HttpClient,
+    private toastCtrl: ToastController,
+    private network: Network
   ) { }
 
   public async authorizationHeader() {
@@ -29,6 +33,12 @@ export class ApiProvider {
 
       if (!headers) {
         observer.error('No headers found.');
+      }
+
+      if (this.network.type === "none") {
+        this.presentToast('Please check your internet connection.');
+        observer.error();
+        return;
       }
 
       return this.http.get(endpoint, { headers: headers }).retry(3).take(1).timeout(30000).subscribe((data: any) => {
@@ -53,6 +63,12 @@ export class ApiProvider {
         observer.error('No headers found.');
       }
 
+      if (this.network.type === "none") {
+        this.presentToast('Please check your internet connection.');
+        observer.error();
+        return;
+      }
+
       return this.http.get(`${endpoint}/${id}`, { headers: headers }).retry(3).take(1).timeout(30000).subscribe((data: any) => {
         observer.next(data);
         observer.complete();
@@ -73,6 +89,12 @@ export class ApiProvider {
 
       if (!headers) {
         observer.error('No headers found.');
+      }
+
+      if (this.network.type === "none") {
+        this.presentToast('Please check your internet connection.');
+        observer.error();
+        return;
       }
 
       return this.http.post(endpoint, body, { headers: headers }).retry(3).take(1).timeout(30000).subscribe((data: any) => {
@@ -96,6 +118,12 @@ export class ApiProvider {
         observer.error('No headers found.');
       }
 
+      if (this.network.type === "none") {
+        this.presentToast('Please check your internet connection.');
+        observer.error();
+        return;
+      }
+
       return this.http.put(`${endpoint}/${id}`, body, { headers: headers }).retry(3).take(1).timeout(30000).subscribe((data: any) => {
         observer.next(data);
         observer.complete();
@@ -115,6 +143,12 @@ export class ApiProvider {
 
       if (!headers) {
         observer.error('No headers found.');
+      }
+
+      if (this.network.type === "none") {
+        this.presentToast('Please check your internet connection.');
+        observer.error();
+        return;
       }
 
       return this.http.delete(`${endpoint} / ${id}`, { headers: headers }).retry(3).take(1).timeout(30000).subscribe((data: any) => {
@@ -144,6 +178,15 @@ export class ApiProvider {
     // write the ArrayBuffer to a blob, and you're done
     var bb = new Blob([ab]);
     return bb;
+  }
+
+  presentToast(msg: string) {
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      position: 'middle'
+    });
+    toast.present();
   }
 
 }

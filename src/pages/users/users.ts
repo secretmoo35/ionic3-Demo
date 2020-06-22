@@ -33,9 +33,8 @@ export class UsersPage {
       this.loadingProvider.stopLoading();
       console.log(res);
       this.results = res.results;
-    }, (err: any) => {
+    }, () => {
       this.loadingProvider.stopLoading();
-      alert(err);
     });
 
   }

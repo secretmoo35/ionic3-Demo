@@ -23,7 +23,7 @@ export class StorageProvider {
         window.localStorage.setItem(`${config.storage}_${reference}`, this.encrypt(JSON.stringify(value)));
         resolve(value);
       } else {
-        this.nativeStorage.setItem(`${config.storage}_${reference}`, this.encrypt(value)).then((result: any) => {
+        this.nativeStorage.setItem(`${config.storage}_${reference}`, this.encrypt(JSON.stringify(value))).then((result: any) => {
           resolve(result);
         }).catch(() => {
           resolve(null);
@@ -42,7 +42,7 @@ export class StorageProvider {
         resolve(value);
       } else {
         this.nativeStorage.getItem(`${config.storage}_${reference}`).then((result: any) => {
-          resolve(this.decrypt(result));
+          resolve(JSON.parse(this.decrypt(result)));
         }).catch(() => {
           resolve(null);
         });

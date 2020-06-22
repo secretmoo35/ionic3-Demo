@@ -30,10 +30,18 @@
     "@ionic/storage": "2.2.0",
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-browsertab": "^0.2.0",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-native-spinner": "^1.1.3",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "crypto-js": "^4.0.0",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
@@ -55,7 +63,18 @@
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-native-spinner": {},
       "cordova-plugin-browsertab": {},
-      "cordova-plugin-network-information": {}
-    }
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }

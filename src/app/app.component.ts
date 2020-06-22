@@ -26,12 +26,23 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      if (!this.platform.is('android')) {
+        this.statusBar.overlaysWebView(true);
+        this.statusBar.styleDefault();
+      } else if (this.platform.is('core')) {
+        this.statusBar.overlaysWebView(true);
+        this.statusBar.styleBlackOpaque();
+      } else {
+        this.statusBar.styleLightContent();
+      }
 
       if (this.platform.is('cordova')) {
         this.initialOneSignal();
       }
+
+      this.setLanguage();
     });
   }
 
@@ -70,10 +81,10 @@ export class MyApp {
   async setLanguage() {
     // Translate
     this.translate.addLangs(['en', 'th']);
-    const browserLang = await this.storageProvider.getItem('ln') || 'th';
+    const browserLang = await this.storageProvider.getItem('ln') || 'en';
 
     this.translate.setDefaultLang(browserLang === 'th' ? 'en' : 'th');
-    this.translate.use(browserLang.match(/en|th/) ? browserLang : 'th');
+    this.translate.use(browserLang.match(/en|th/) ? browserLang : 'en');
 
   }
 
