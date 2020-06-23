@@ -12,6 +12,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { Network } from '@ionic-native/network';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -21,6 +22,7 @@ import { AlertProvider } from '../providers/alert/alert';
 import { ApiProvider } from '../providers/api/api';
 import { LoadingProvider } from '../providers/loading/loading';
 import { BrowserProvider } from '../providers/browser/browser';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { BrowserProvider } from '../providers/browser/browser';
         deps: [HttpClient]
       }
     }),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,6 +68,7 @@ import { BrowserProvider } from '../providers/browser/browser';
     BrowserTab,
     Network,
     NativeStorage,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AlertProvider,
     ApiProvider,

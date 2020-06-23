@@ -1,0 +1,17 @@
+button-custom {
+    .btn-custom {
+        background-color: #FF9800;
+        border-radius: 8px;
+        padding: 16px;
+        color: #ffffff;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0.5px 1px 5px rgba(0, 0, 0, 0.28);
+    }
+
+    .btn-custom:active {
+        background-color: rgb(67, 129, 131);
+    }
+}

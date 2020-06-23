@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { AlertProvider } from '../../providers/alert/alert';
 import { BrowserProvider } from '../../providers/browser/browser';
@@ -16,6 +17,8 @@ export class HomePage {
 
   storage: any;
   storageEncrypt: any;
+  msg: string = 'Hello.'
+  base64Image: string;
 
   constructor(
     private navCtrl: NavController,
@@ -24,7 +27,8 @@ export class HomePage {
     private loadingProvider: LoadingProvider,
     private storageProvider: StorageProvider,
     private platform: Platform,
-    private nativeStorage: NativeStorage
+    private nativeStorage: NativeStorage,
+    private camera: Camera
   ) {
 
   }
@@ -68,6 +72,27 @@ export class HomePage {
 
   getUsers() {
     this.navCtrl.push('UsersPage');
+  }
+
+  clickCustomBtn() {
+    alert('Hi');
+  }
+
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
   }
 
 }

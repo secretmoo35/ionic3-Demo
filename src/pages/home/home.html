@@ -30,4 +30,18 @@
 
   <p>API</p>
   <button ion-button block (click)="getUsers()">Get users</button>
+
+  <p>Custom Component</p>
+  <button-custom [text]="'Click Me'" (onClick)="clickCustomBtn()"></button-custom>
+
+  <p>Binding</p>
+  <p>Output: {{ msg }}</p>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="msg"></ion-input>
+  </ion-item>
+
+  <p>Plugins</p>
+  <button ion-button block (click)="openCamera()">Open Camera</button>
+  <img *ngIf="base64Image" src="{{ base64Image }}" width="100" height="150">
+
 </ion-content>
